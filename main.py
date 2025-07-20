@@ -2,7 +2,7 @@ import requests
 import base64
 import time
 
-def ask_qwen_with_image(image_path, prompt, model="qwen2.5vl:3b"):
+def ask_qwen_with_image(image_path, prompt, model="phi3"):
     start_time = time.perf_counter()
     # แปลงภาพเป็น base64
     with open(image_path, "rb") as img_file:
