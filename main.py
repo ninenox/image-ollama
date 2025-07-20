@@ -1,7 +1,9 @@
 import requests
 import base64
+import time
 
 def ask_qwen_with_image(image_path, prompt, model="qwen2.5vl:3b"):
+    start_time = time.perf_counter()
     # แปลงภาพเป็น base64
     with open(image_path, "rb") as img_file:
         image_b64 = base64.b64encode(img_file.read()).decode("utf-8")
@@ -16,6 +18,11 @@ def ask_qwen_with_image(image_path, prompt, model="qwen2.5vl:3b"):
 
     response = requests.post(url, json=payload)
     response.raise_for_status()
+
+    end_time = time.perf_counter()
+    elapsed = end_time - start_time
+    print(f"🕒 เวลาในการประมวลผล: {elapsed:.2f} วินาที")
+    
     return response.json()["response"]
 
 # 🧪 เรียกใช้งาน
